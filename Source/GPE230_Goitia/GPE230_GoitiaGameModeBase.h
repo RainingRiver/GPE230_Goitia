@@ -6,6 +6,7 @@
 #include "GameFramework/GameModeBase.h"
 #include "GPE230_GoitiaGameModeBase.generated.h"
 
+
 /**
  * 
  */
