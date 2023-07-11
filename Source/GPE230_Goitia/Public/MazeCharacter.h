@@ -11,6 +11,31 @@ class GPE230_GOITIA_API AMazeCharacter : public ACharacter
 {
 	GENERATED_BODY()
 
+private:
+	UPROPERTY(EditAnywhere)
+		float moveSpeed;
+	UPROPERTY(EditAnywhere)
+		float rotationSpeed;
+	/// <summary>
+	/// Is this player dead and ready to restart the level?
+	/// </summary>
+	UPROPERTY(EditAnywhere)
+		bool _isDead = false;
+
+
+protected:
+	/// <summary>
+	/// The current health of this character
+	/// </summary>
+	float _currentHealth;
+
+public:
+	/// <summary>
+	///	The max health and the starting health of this character
+	/// </summary>
+	UPROPERTY(EditAnywhere)
+		float maxHealth;
+
 public:
 	// Sets default values for this character's properties
 	AMazeCharacter();
@@ -18,6 +43,8 @@ public:
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
+	virtual float TakeDamage(float DamageAmount, FDamageEvent const& DamageEvent, AController* EventInstigator, AActor* DamageCauser) override;
+	virtual void Die();
 
 public:	
 	// Called every frame
@@ -25,12 +52,6 @@ public:
 
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
-
-private:
-	UPROPERTY(EditAnywhere)
-		float moveSpeed;
-	UPROPERTY(EditAnywhere)
-		float rotationSpeed;
 
 private:
 	void MoveFB(float value);
