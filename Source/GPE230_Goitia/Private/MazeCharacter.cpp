@@ -52,9 +52,12 @@ float AMazeCharacter::TakeDamage(float DamageAmount, FDamageEvent const& DamageE
 void AMazeCharacter::Die()
 {
 	_isDead = true;
-	moveSpeed = 0;
-	rotationSpeed = 0;
+	_currentHealth = 0;
+	_moveSpeed = 0;
+	_rotationSpeed = 0;
 
+
+	GetMesh()->PlayAnimation(_deathAnim, false);
 
 	// ToDo: Trigger game over state and prompt the player to restart the level
 }
@@ -84,7 +87,7 @@ void AMazeCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompo
 /// <param name="value"></param>
 void AMazeCharacter::MoveFB(float value)
 {
-	AddMovementInput(GetActorForwardVector(), value * moveSpeed);
+	AddMovementInput(GetActorForwardVector(), value * _moveSpeed);
 }
 
 /// <summary>
@@ -93,7 +96,7 @@ void AMazeCharacter::MoveFB(float value)
 /// <param name="value"></param>
 void AMazeCharacter::MoveLR(float value)
 {
-	AddMovementInput(-GetActorRightVector(), value * moveSpeed);
+	AddMovementInput(-GetActorRightVector(), value * _moveSpeed);
 }
 
 /// <summary>
@@ -102,5 +105,5 @@ void AMazeCharacter::MoveLR(float value)
 /// <param name="value"></param>
 void AMazeCharacter::Rotate(float value)
 {
-	AddControllerYawInput(value * rotationSpeed);
+	AddControllerYawInput(value * _rotationSpeed);
 }

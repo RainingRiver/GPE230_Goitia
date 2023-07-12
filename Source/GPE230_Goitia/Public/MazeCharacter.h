@@ -13,14 +13,20 @@ class GPE230_GOITIA_API AMazeCharacter : public ACharacter
 
 private:
 	UPROPERTY(EditAnywhere)
-		float moveSpeed;
+		float _moveSpeed;
 	UPROPERTY(EditAnywhere)
-		float rotationSpeed;
+		float _rotationSpeed;
+	/// <summary>
+	/// The animation to play when the player dies
+	/// </summary>
+	UPROPERTY(EditAnywhere)
+		UAnimSequence* _deathAnim;
 	/// <summary>
 	/// Is this player dead and ready to restart the level?
 	/// </summary>
 	UPROPERTY(EditAnywhere)
 		bool _isDead = false;
+
 
 
 protected:
@@ -34,7 +40,7 @@ public:
 	///	The max health and the starting health of this character
 	/// </summary>
 	UPROPERTY(EditAnywhere)
-		float maxHealth;
+	float maxHealth;
 
 public:
 	// Sets default values for this character's properties
