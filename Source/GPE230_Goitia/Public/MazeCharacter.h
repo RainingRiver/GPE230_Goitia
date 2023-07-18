@@ -4,6 +4,10 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
+
+#include "NiagaraFunctionLibrary.h"
+#include "NiagaraComponent.h"
+
 #include "MazeCharacter.generated.h"// This is always last
 
 UCLASS()
@@ -26,6 +30,8 @@ private:
 	/// </summary>
 	UPROPERTY(EditAnywhere)
 		bool _isDead = false;
+	UPROPERTY(EditAnywhere)
+		UNiagaraSystem* _stunSystem;
 
 
 
@@ -63,5 +69,6 @@ private:
 	void MoveFB(float value);
 	void MoveLR(float value);
 	void Rotate(float value);
-
+	UFUNCTION(BlueprintCallable)
+	void ActiveateStunParticleSystem();
 };

@@ -107,3 +107,20 @@ void AMazeCharacter::Rotate(float value)
 {
 	AddControllerYawInput(value * _rotationSpeed);
 }
+
+void AMazeCharacter::ActiveateStunParticleSystem()
+{
+	if (_stunSystem)
+	{
+		USceneComponent* AttachComp = GetDefaultAttachComponent();
+
+		UNiagaraComponent* NiagaraComp = UNiagaraFunctionLibrary::SpawnSystemAttached(_stunSystem, AttachComp, NAME_None,
+			FVector(0), FRotator(0), EAttachLocation::Type::KeepRelativeOffset, true);
+
+		NiagaraComp->Activate();
+	}
+	else
+	{
+		UE_LOG(LogTemp, Error, TEXT("Player tryed to use stun ability, but no template particles system was sound."));
+	}
+}
