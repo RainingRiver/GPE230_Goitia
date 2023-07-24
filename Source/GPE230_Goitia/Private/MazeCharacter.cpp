@@ -80,6 +80,24 @@ void AMazeCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompo
 
 }
 
+void AMazeCharacter::Heal(float HealAmount)
+{
+	_currentHealth = HealAmount + _currentHealth;
+	if (_currentHealth >= maxHealth)
+	{
+		_currentHealth = maxHealth;
+	}
+}
+
+void AMazeCharacter::Hurt(float HurtAmount)
+{
+	_currentHealth = _currentHealth - HurtAmount;
+	if (_currentHealth <= 0)
+	{
+		Die();
+	}
+}
+
 
 /// <summary>
 /// Forward and backwards movement
